@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
         // grab text from textView and concatenate
         for (i in 0..4) {
-            guess[i] = getTextView(row, i)  // TODO: figure out this error
+            guess.replaceRange(i, i+1, getTextView(row, i))    // TODO: figure out this error
         }
         // No change to game state if the word is not in dictionary
         if (!legitGuess()) {
@@ -113,7 +113,8 @@ class MainActivity : AppCompatActivity() {
         colorCode()
         // If we got here, the guessed word is in the dictionary
         // If it matches the word, the game is over
-
+        if (guess == word)
+            gameOver = true
         // If we're on the last row, the game is over
         if (row == 6){
             gameOver = true
