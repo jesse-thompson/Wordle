@@ -41,7 +41,8 @@ class MainActivity : AppCompatActivity() {
         // Tell the user what the word is, for debugging
         findViewById<TextView>(R.id.message).text = "The word is $word"
 
-
+        // TODO: add click listeners
+        findViewById<View>(getButton()).setOnClickListener(letterHandler())
     }
 
     // Track the cursor position in the Wordle grid
@@ -95,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         // Erase the text
     }
 
-    // TODO:
     // themes.xml - OnClickListener for enter
     fun enterHandler(view: View) {
         // No change to game state if the word is incomplete
@@ -105,9 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // grab text from textView and concatenate
-        for (i in 0..4) {
-            guess.replaceRange(i, i+1, getTextView(row, i).toString())
-        }
+        getGuess()
 
         // No change to game state if the word is not in dictionary
         if (!legitGuess()) {
@@ -133,10 +131,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // TODO:
     // grab text from textView and concatenate
     private fun getGuess() {
-
+        for (i in 0..4) {
+            guess.replaceRange(i, i+1, getTextView(row, i).toString())
+        }
     }
 
     //TODO:
