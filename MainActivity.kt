@@ -49,35 +49,6 @@ class MainActivity : AppCompatActivity() {
         // Tell the user what the word is, for debugging
         findViewById<TextView>(R.id.message).text = "The word is $word"
 
-        // TODO: add click listeners
-        findViewById<View>(R.id.buttonEnter).setOnClickListener(enterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonBack).setOnClickListener(backspaceHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonA).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonB).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonC).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonD).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonE).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonF).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonG).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonH).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonI).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonJ).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonK).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonL).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonM).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonN).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonO).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonP).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonQ).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonR).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonS).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonT).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonU).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonV).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonW).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonX).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonY).setOnClickListener(letterHandler(R.id.textView61))
-        findViewById<View>(R.id.buttonZ).setOnClickListener(letterHandler(R.id.textView61))
 
     }
 
@@ -119,10 +90,9 @@ class MainActivity : AppCompatActivity() {
             col ++
             getTextView(row, col).text = (view as Button).text.toString()
         }
-
     }
 
-    //TODO
+
     // themes.xml - OnClickListener for back space
     fun backspaceHandler(view: View) {
         // if game is over, just return
@@ -133,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         if (col > 5) col = 5
         // Erase the text
         getTextView(row, col).text = ""
+        if (col != 1) col--
     }
 
     // themes.xml - OnClickListener for enter
@@ -172,9 +143,13 @@ class MainActivity : AppCompatActivity() {
 
     // grab text from textView and concatenate
     private fun getGuess() {
-        for (i in 0..4) {
-            guess.replaceRange(i, i+1, getTextView(row, i).toString())
+        var guessedWord = ""
+        for (i in 1..5) {
+            guessedWord.plus(getTextView(row, i).toString())
+            println(getTextView(row, i).toString())
         }
+        println(guessedWord)
+        guess = guessedWord
     }
 
     //TODO:
