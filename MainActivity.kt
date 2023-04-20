@@ -147,6 +147,8 @@ class MainActivity : AppCompatActivity() {
         for (i in 1..5) {
             guess += getTextView(row, i).text
         }
+        guess = guess.lowercase()
+        println(guess)
     }
 
     //TODO:
