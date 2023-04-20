@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         val idName = if (col > 5) "textView${row}5" else "textView${row}${col}"
         // resources.getIdentifier will return corresponding number (e.g.,2131231192)
         val id = resources.getIdentifier(idName, "id", packageName)
-        println("idName is $idName and id is $id")    //for debugging
+//        println("idName is $idName and id is $id")    //for debugging
         return findViewById<TextView>(id)
     }
 
@@ -143,13 +143,10 @@ class MainActivity : AppCompatActivity() {
 
     // grab text from textView and concatenate
     private fun getGuess() {
-        var guessedWord = ""
+        guess = ""
         for (i in 1..5) {
-            guessedWord.plus(getTextView(row, i).toString())
-            println(getTextView(row, i).toString())
+            guess += getTextView(row, i).text
         }
-        println(guessedWord)
-        guess = guessedWord
     }
 
     //TODO:
