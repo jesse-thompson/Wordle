@@ -40,7 +40,10 @@ class MainActivity : AppCompatActivity() {
         word = "quite"  // test only
         // Tell the user what the word is, for debugging
         findViewById<TextView>(R.id.message).text = "The word is $word"
+
+
     }
+
     // Track the cursor position in the Wordle grid
     private var row = 1
     private var col = 1
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         println("idName is $idName and id is $id")    //for debugging
         return findViewById<TextView>(id)
     }
+
     // get letter button (e.g., buttonS, buttonQ)
     private fun getButton(letter : String): Button {
         // e.g., idName is buttonA, buttonB, buttonC, etc
@@ -76,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         // advance cursor to next textView
         if (col != 5){
             col ++
-
+            getTextView(row, col).text = (view as Button).text.toString()
         }
 
     }
@@ -102,22 +106,30 @@ class MainActivity : AppCompatActivity() {
 
         // grab text from textView and concatenate
         for (i in 0..4) {
-            guess.replaceRange(i, i+1, getTextView(row, i))    // TODO: figure out this error
+            guess.replaceRange(i, i+1, getTextView(row, i).toString())
         }
+
         // No change to game state if the word is not in dictionary
         if (!legitGuess()) {
             findViewById<TextView>(R.id.message).text = "Please use a legit word"
             return
         }
+
         // At this point, reveal the game state
         colorCode()
+
         // If we got here, the guessed word is in the dictionary
         // If it matches the word, the game is over
-        if (guess == word)
+        if (guess == word){
             gameOver = true
+            findViewById<TextView>(R.id.message).text = "Congratulations!"
+            return
+        }
         // If we're on the last row, the game is over
         if (row == 6){
             gameOver = true
+            findViewById<TextView>(R.id.message).text = "Sorry, you did not guess the word :("
+            return
         }
     }
 
