@@ -1,3 +1,10 @@
+/*
+COMP415-001
+Wordle App Project
+Starter code by: Dr. Jung
+Team: Jesse Thompson, Donte Bailey
+ */
+
 package com.example.wordle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var word : String    // The selected word
     private var gameOver = false    // Is the game over?
     private var guess = "     "    // The user's guess
+
 
     // Check if user's word exists in the file
     private fun legitGuess():Boolean = guess.lowercase() in wordList
@@ -42,7 +50,35 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.message).text = "The word is $word"
 
         // TODO: add click listeners
-        findViewById<View>(getButton()).setOnClickListener(letterHandler())
+        findViewById<View>(R.id.buttonEnter).setOnClickListener(enterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonBack).setOnClickListener(backspaceHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonA).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonB).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonC).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonD).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonE).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonF).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonG).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonH).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonI).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonJ).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonK).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonL).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonM).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonN).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonO).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonP).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonQ).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonR).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonS).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonT).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonU).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonV).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonW).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonX).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonY).setOnClickListener(letterHandler(R.id.textView61))
+        findViewById<View>(R.id.buttonZ).setOnClickListener(letterHandler(R.id.textView61))
+
     }
 
     // Track the cursor position in the Wordle grid
@@ -73,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     // themes.xml - OnClickListener for letter buttons
     fun letterHandler(view: View) {
         // if game is over, just return
-
+        if (gameOver) return
         // when a user press a letter, show the letter to current textView
         getTextView(row, col).text = (view as Button).text.toString()
 
@@ -92,8 +128,11 @@ class MainActivity : AppCompatActivity() {
         // if game is over, just return
         if (gameOver) return
         // if we went past the end, so clamp down
+        if (col < 1) col = 1
         // Go back if we advanced
+        if (col > 5) col = 5
         // Erase the text
+        getTextView(row, col).text = ""
     }
 
     // themes.xml - OnClickListener for enter
