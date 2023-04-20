@@ -88,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         // advance cursor to next textView
         if (col != 5){
             col ++
-            getTextView(row, col).text = (view as Button).text.toString()
         }
     }
 
@@ -139,6 +138,8 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.message).text = "Sorry, you did not guess the word :("
             return
         }
+        row++
+        col = 1
     }
 
     // grab text from textView and concatenate
